@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background: #e9edc9;
+  min-width: 30%;
+  min-height: 70vh;
+  padding: 1rem;
+}
+
+#todo-item {
+  list-style: none;
+}
