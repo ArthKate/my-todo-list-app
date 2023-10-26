@@ -1,49 +1,24 @@
-const heading = document.querySelector('h1');
-const form = document.querySelector('#todo-form');
-const input = document.querySelector('#todo-input');
-const ul = document.querySelector('#todo-list');
-const button = document.querySelector('button');
+const button = document.querySelector(".btn");
+const ul = document.querySelector(".todoList");
 
-function createTaskItem(text) {
-  const li = document.createElement('li');
-  // const editBtn = document.createElement('i');
-  // editBtn.classList.add('fa-regular', 'fa-pen-to-square');
-  const delBtn = document.createElement('i');
-  delBtn.classList.add('fa-regular', 'fa-trash-can');
-
-  // editBtn.addEventListener('click', handleEditTaskClick);
-  delBtn.addEventListener('click', handleDeleteTaskClick);
-
-  // li.appendChild(editBtn);
+const createNewTodo = (task) => {
+  const li = document.createElement("li");
+  const delBtn = document.createElement("button");
+  delBtn.innerText = 'Delete';
   li.appendChild(delBtn);
-  li.appendChild(document.createTextNode(text));
+  li.appendChild(document.createTextNode(task));
   return li;
 }
 
 const todos = [];
-// check if toddos exists in local storage
-if(localStorage.getItem('todos')) {
-  todos = JSON.parse(localStorage.getItesm('todos'))
+
+const addTodo = () => {
+  const input = document.querySelector(".todo-input");
+  const todo = input.value;
+  todos.push(todo);
+  const newTodo = createNewTodo(todo);
+  ul.appendChild(newTodo);
+  input.value = '';
 }
 
-// function handleEditTaskClick() {
-//   console.log('Edit task clicked');
-// }
-
-function handleDeleteTaskClick() {
-  console.log('Delete task clicked');
-}
-
-function handleAddTaskButtonClick(event) {
-  event.preventDefault(); // Prevent the default form submission behavior
-  const taskText = input.value.trim();
-  if (taskText !== '') {
-    const todo = createTaskItem(taskText);
-    todos.push(todo);
-    ul.appendChild(todo);
-    localStorage.setItem('todos', JSON.stringify(todos));
-    input.value = '';
-  }
-}
-
-button.addEventListener('click', handleAddTaskButtonClick);
+button.addEventListener('click', addTodo);
