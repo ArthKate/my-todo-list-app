@@ -3,10 +3,11 @@ const ul = document.querySelector(".todoList");
 
 const createNewTodo = (task) => {
   const li = document.createElement("li");
-  const delBtn = document.createElement("button");
-  delBtn.innerText = 'Delete';
-  li.appendChild(delBtn);
+  const delBtn = document.createElement("i")
+  delBtn.classList.add('fa-regular', 'fa-trash-can');
+  // delBtn.innerText = 'Delete';
   li.appendChild(document.createTextNode(task));
+  li.appendChild(delBtn);
   return li;
 }
 
