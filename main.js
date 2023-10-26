@@ -1,27 +1,36 @@
-const section = document.querySelector('section'); //Grab section element from html file.
-section.className = 'container'; // add class attribute to section element
-const h1 = document.querySelector('h1'); //create h1 element for todo-list heading
-const input = document.querySelector('#todo-list-input'); //grabbing input element our html file
-const span = document.createElement('span'); // create span element
-const button = document.createElement('button'); //
-button.setAttribute('class', 'btn'); // creating class attribute and class name btn.
-button.innerHTML = 'Add Task'; //adding button tag and the text it display
-span.appendChild(button); // add button node/element to the span element.
-const ul = document.querySelector('ul'); //grabbing our ul element from html file
-// const li = document.createElement('li');
-// ul.appendChild(li);
+const heading = document.querySelector('h1');
+const form = document.querySelector('#todo-form');
+const input = document.querySelector('#todo-input');
+const ul = document.querySelector('#todo-list');
+const button = document.querySelector('button');
+let task = null;
 
-const addNewTodoItem = (e) => {
-  e.preventDefault();
+function createTaskItem() {
   const li = document.createElement('li');
-  li.setAttribute('id', 'todo-item');
-  li.innerText = input.value;
-  return ul.appendChild(li)
+  const editBtn = document
+    .createElement('i')
+    .classList.add('fa-regular', 'fa-pen-to-square');
+  const delBtn = document
+    .createElement('i')
+    .classList.add('fa-regular', 'fa-trash-can');
+    li.append(editBtn);
+    li.append(delBtn);
+    li.innerText = input.value;
+    return li;
+}
+
+// console.log(createTaskItem('arthur'))
+
+const todos = [];
+
+
+const handleAddTaskButtonClick = () => {
+  const todo = createTaskItem();
+  todos.push(todo);
+  ul.appendChild(todo);
+  input.value = '';
 };
 
-button.addEventListener('click', addNewTodoItem);
+button.addEventListener('click', handleAddTaskButtonClick);
 
 
-
-
-section.append(h1, input, span, ul); //Adding my elements into the section/container element.
