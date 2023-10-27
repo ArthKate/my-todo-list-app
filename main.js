@@ -1,6 +1,7 @@
 const button = document.querySelector(".btn");
 const ul = document.querySelector(".todoList");
 
+
 const createNewTodo = (task) => {
   const li = document.createElement("li");
   const delBtn = document.createElement("i")
@@ -16,10 +17,14 @@ const todos = [];
 const addTodo = () => {
   const input = document.querySelector(".todo-input");
   const todo = input.value;
-  todos.push(todo);
-  const newTodo = createNewTodo(todo);
-  ul.appendChild(newTodo);
-  input.value = '';
+  if (todo !== "") {
+    todos.push(todo);
+    const newTodo = createNewTodo(todo);
+    ul.appendChild(newTodo);
+    input.value = '';
+  }
 }
+
+console.log(todos)
 
 button.addEventListener('click', addTodo);
